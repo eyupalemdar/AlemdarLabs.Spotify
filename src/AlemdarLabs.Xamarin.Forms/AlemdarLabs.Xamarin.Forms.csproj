@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>AlemdarLabs.XF</AssemblyName>
+    <RootNamespace>AlemdarLabs.XF</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
+  </ItemGroup>
+
+</Project>

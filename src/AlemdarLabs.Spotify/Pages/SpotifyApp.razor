@@ -1,0 +1,55 @@
+﻿@using MMBE = Microsoft.MobileBlazorBindings.Elements
+@using XFF = Xamarin.Forms
+@using AXB = AlemdarLabs.XF.BottomTabbedPage
+
+<ContentPage Title="Home"
+             IconImageSource="@(ImageSource.FromFile(IsPageActive(HomePage) ? AppResources.IconHomeSelected : AppResources.IconHome))"
+             BackgroundColor="@AppResources.BlackColor"
+             @ref="HomePage">
+
+    @*Adding custom font via CSS is not supported for now*@
+    <StyleSheet Resource="wwwroot/css/spotify.css" Assembly="GetType().Assembly"></StyleSheet>
+
+    <Home />
+</ContentPage>
+<ContentPage Title="Search"
+             IconImageSource="@(ImageSource.FromFile(AppResources.IconSearch))"
+             BackgroundColor="@AppResources.BlackColor"
+             @ref="SearchPage">
+    <Search />
+</ContentPage>
+<ContentPage Title="Your Library"
+             IconImageSource="@(ImageSource.FromFile(AppResources.IconLibrary))"
+             BackgroundColor="@AppResources.BlackColor"
+             @ref="YourLibraryPage">
+    <YourLibrary />
+</ContentPage>
+
+@code {
+    private MMBE.ContentPage HomePage;
+    private MMBE.ContentPage SearchPage;
+    private MMBE.ContentPage YourLibraryPage;
+    private AXB.BottomTabbedPage CurrentActivePage;
+
+    protected override Task OnInitializedAsync()
+    {
+        if (App.BottomTabbedPageControl != null)
+        {
+            App.BottomTabbedPageControl.CurrentPageChanged += OnCurrentPageChanged;
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+    private void OnCurrentPageChanged(object sender, System.EventArgs e)
+    {
+        CurrentActivePage = (AXB.BottomTabbedPage)sender;
+
+        StateHasChanged();
+    }
+
+    private bool IsPageActive(MMBE.ContentPage page)
+    {
+        return page?.NativeControl == CurrentActivePage?.CurrentPage;
+    }
+}

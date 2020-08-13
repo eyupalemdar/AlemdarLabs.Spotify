@@ -1,0 +1,72 @@
+﻿@inherits PlayerComponentBase
+
+<Grid BackgroundColor="@AppResources.SoftBlackColor"
+      class="current-playing-song-area"
+      RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
+    <Layout>
+        <RowDefinition Height="1" />
+        <RowDefinition GridUnitType="GridUnitType.Auto" />
+        <RowDefinition Height="2" />
+        <RowDefinition Height="2" />
+    </Layout>
+    <Contents>
+        <GridCell Row="0" Column="0" ColumnSpan="6">
+            <AudioSlider HasThumb="false"
+                         Value="5"
+                         Minimum="0" Maximum="243"
+                         Margin="0" HeightRequest="1"
+                         HorizontalOptions="@LayoutOptions.FillAndExpand" />
+        </GridCell>
+        <GridCell Row="1" Column="0" ColumnSpan="4">
+            <StackLayout Orientation="@StackOrientation.Horizontal"
+                         HeightRequest="@MiniPlayerHeight"
+                         HorizontalOptions="@LayoutOptions.StartAndExpand"
+                         VerticalOptions="@LayoutOptions.CenterAndExpand">
+                <Image Source="@ImageSource.FromUri(new Uri(Song.AlbumImageUrl))"
+                       HeightRequest="64" WidthRequest="64"
+                       HorizontalOptions="@LayoutOptions.Start" />
+                <StackLayout Orientation="@StackOrientation.Vertical"
+                             HorizontalOptions="@LayoutOptions.StartAndExpand"
+                             VerticalOptions="@LayoutOptions.CenterAndExpand"
+                             Margin="@(Device.RuntimePlatform == Device.Android ? new Thickness(10,0,0,0) : new Thickness())">
+                    <Label Text="@Song.Title" TextColor="@Color.White"
+                           FontFamily="ProximaNova"
+                           FontSize="@(Device.RuntimePlatform == Device.Android ? 14 : 11)" />
+                    <Label Text="@Song.Artist" TextColor="@AppResources.GreyColor"
+                           FontFamily="ProximaNova"
+                           FontSize="@(Device.RuntimePlatform == Device.Android ? 14 : 11)" />
+                </StackLayout>
+            </StackLayout>
+        </GridCell>
+        <GridCell Row="1" Column="1" ColumnSpan="5">
+            <StackLayout Orientation="@StackOrientation.Horizontal"
+                         HorizontalOptions="@LayoutOptions.End"
+                         VerticalOptions="@LayoutOptions.CenterAndExpand">
+                <SvgCachedImage Source="@ImageSource.FromFile(AppResources.IconLike)"
+                                HeightRequest="32" WidthRequest="32"
+                                Margin="new Thickness(0,0,5,0)"
+                                HorizontalOptions="@LayoutOptions.End" />
+                <SvgCachedImage Source="@ImageSource.FromFile(AppResources.IconPlay)"
+                                HeightRequest="32" WidthRequest="32"
+                                Margin="new Thickness(0,0,10,0)"
+                                HorizontalOptions="@LayoutOptions.End"/>
+            </StackLayout>
+        </GridCell>
+        <GridCell Row="2" Column="0" ColumnSpan="6">
+            <BoxView BackgroundColor="@AppResources.UpperBorderColor"
+                     Margin="0"
+                     VerticalOptions="@LayoutOptions.FillAndExpand"
+                     HorizontalOptions="@LayoutOptions.FillAndExpand" />
+        </GridCell>
+        <GridCell Row="3" Column="0" ColumnSpan="6">
+            <BoxView BackgroundColor="@AppResources.LowerBorderColor"
+                     Margin="0"
+                     VerticalOptions="@LayoutOptions.FillAndExpand"
+                     HorizontalOptions="@LayoutOptions.FillAndExpand" />
+        </GridCell>
+    </Contents>
+</Grid>
+
+@code {
+    private const double MiniPlayerHeight = 64;
+}

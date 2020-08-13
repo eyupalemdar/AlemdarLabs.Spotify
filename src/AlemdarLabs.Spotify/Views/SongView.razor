@@ -1,0 +1,57 @@
+﻿<Grid>
+    <Layout>
+        <RowDefinition GridUnitType="GridUnitType.Auto" />
+    </Layout>
+    <Contents>
+        @for (int index = 0; index < Songs.Count; index++)
+        {
+            var currentSong = Songs[index];
+
+            <GridCell Row="0" Column="@index">
+                <StackLayout Margin="new Thickness(10,0,5,0)">
+                    <ImageButton Source="@ImageSource.FromUri(new Uri(currentSong.AlbumImageUrl))"
+                                 OnClick="@(async (e) => await OpenPlayer(currentSong))"
+                                 WidthRequest="136" HeightRequest="136"
+                                 HorizontalOptions="LayoutOptions.Start" />
+                    <Label Text="@currentSong.Title" TextColor="@Color.White"
+                           class="bold-label"
+                           FontFamily="ProximaNova-Bold"
+                           FontSize="13"
+                           HorizontalTextAlignment="TextAlignment.Start"
+                           LineBreakMode="LineBreakMode.TailTruncation" />
+                    <Label Text="@currentSong.Artist" TextColor="@AppResources.GreyColor"
+                           FontSize="12"
+                           FontFamily="ProximaNova"
+                           Margin="new Thickness(0,-5,0,0)"
+                           HorizontalTextAlignment="TextAlignment.Start"
+                           LineBreakMode="LineBreakMode.TailTruncation" />
+                </StackLayout>
+            </GridCell>
+        }
+    </Contents>
+</Grid>
+
+<ModalContainer @ref="PlayerContainer" OnClosed="OnClosePlayer">
+    <PlayerPage Song="@SelectedSong" OnClose="OnClosePlayer" />
+</ModalContainer>
+
+@code {
+    [Parameter] public List<Song> Songs { get; set; }
+
+    private ModalContainer PlayerContainer;
+    private Song SelectedSong;
+
+    private async Task OpenPlayer(Song song)
+    {
+        SelectedSong = song;
+        PlayerContainer?.ShowDialog();
+        await Task.CompletedTask;
+    }
+
+    private async Task OnClosePlayer()
+    {
+        PlayerContainer?.FinishClosingDialog();
+        SelectedSong = null;
+        await Task.CompletedTask;
+    }
+}

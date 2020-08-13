@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\fonts\ProximaNova-AltBold.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-AltLight.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-AltThin.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-Black.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-Bold.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-Extrabold.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-Regular.otf" />
+    <Content Remove="wwwroot\fonts\ProximaNova-Thin.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\css\spotify.css" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-AltBold.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-AltLight.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-AltThin.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-Black.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-Bold.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-Extrabold.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-Thin.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ProximaNova-Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Microsoft.MobileBlazorBindings" Version="0.4.74-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlemdarLabs.MobileBlazorBindings\AlemdarLabs.MobileBlazorBindings.csproj" />
+  </ItemGroup>
+</Project>

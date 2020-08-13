@@ -1,0 +1,20 @@
+﻿/*label {
+
+}
+
+.medium-label {
+    font-size: medium
+}
+
+.bold-label {
+    font-weight: 900;
+}*/
+
+/*.current-playing-border {
+    border-top: 1px solid #272727;
+    border-bottom: 1px solid #272727;
+}*/
+
+.absolute-layout {
+    position: absolute
+}

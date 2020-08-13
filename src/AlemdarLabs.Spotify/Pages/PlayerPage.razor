@@ -1,0 +1,174 @@
+﻿@using AME = AlemdarLabs.MobileBlazorBindings.Elements
+@inherits PlayerComponentBase
+
+<ContentPage BackgroundColor="@AppResources.BlackColor">
+    <ScrollView Orientation="ScrollOrientation.Vertical">
+        <PancakeView BackgroundGradientStops="@PancakeViewGradientStop"
+                     BackgroundGradientStartPoint="new Point(0d, 0d)"
+                     BackgroundGradientEndPoint="new Point(1d, 1d)">
+            <StackLayout HorizontalOptions="@LayoutOptions.FillAndExpand"
+                         Padding="@(Device.RuntimePlatform == Device.RuntimePlatform ? new Thickness(30,10,30,0) : new Thickness(30,70,30,0))">
+                <StackLayout Orientation="@StackOrientation.Horizontal"
+                             HorizontalOptions="@LayoutOptions.FillAndExpand"
+                             HeightRequest="60"
+                             IsVisible="@(Device.RuntimePlatform == Device.RuntimePlatform ? true : false)">
+                    <CachedImage Source="@ImageSource.FromFile(AppResources.IconChevronDown)"
+                                 VerticalOptions="@LayoutOptions.Center"
+                                 HorizontalOptions="@LayoutOptions.Start" />
+                    <StackLayout VerticalOptions="@LayoutOptions.Center"
+                                 HorizontalOptions="@LayoutOptions.FillAndExpand">
+                        <Label Text="NOW PLAYING FROM PLAYLIST" TextColor="@Color.White"
+                               FontSize="12"
+                               FontFamily="ProximaNova"
+                               HorizontalTextAlignment="@TextAlignment.Center"
+                               HorizontalOptions="@LayoutOptions.Fill" />
+                        <Label Text="Kickass Tunes" TextColor="@Color.White"
+                               Margin="new Thickness(0,-5,0,0)"
+                               FontSize="12"
+                               FontFamily="ProximaNova"
+                               HorizontalTextAlignment="@TextAlignment.Center"
+                               HorizontalOptions="@LayoutOptions.Fill" />
+                    </StackLayout>
+                    <CachedImage Source="@ImageSource.FromFile(AppResources.IconPlaylist)"
+                           VerticalOptions="@LayoutOptions.Center"
+                           HorizontalOptions="@LayoutOptions.End" />
+                </StackLayout>
+                <CachedImage @ref="AlbumCachedImage"
+                             Source="@ImageSource.FromUri(new Uri(Song.AlbumImageUrl))"
+                             VerticalOptions="@LayoutOptions.Center"
+                             HeightRequest="@(Device.RuntimePlatform == Device.Android ? 300 : 325)" />
+                <Grid Margin="new Thickness(0,20,0,0)">
+                    <Layout>
+                        <ColumnDefinition GridUnitType="GridUnitType.Auto" />
+                        <ColumnDefinition GridUnitType="GridUnitType.Star" />
+                        <ColumnDefinition GridUnitType="GridUnitType.Auto" />
+                    </Layout>
+                    <Contents>
+                        <GridCell Row="0" Column="0">
+                            <CachedImage Source="@ImageSource.FromFile(AppResources.IconPlus)"
+                                   HorizontalOptions="@LayoutOptions.Center" />
+                        </GridCell>
+                        <GridCell Row="0" Column="1">
+                            <StackLayout HorizontalOptions="@LayoutOptions.Center">
+                                <Label Text="@Song.Title" TextColor="@Color.White"
+                                       HorizontalOptions="@LayoutOptions.FillAndExpand"
+                                       HorizontalTextAlignment="@TextAlignment.Center"
+                                       FontSize="18"
+                                       FontFamily="ProximaNova-Bold"
+                                       class="bold-label" />
+                                <Label Text="@Song.Artist" TextColor="@AppResources.GreyColor"
+                                       HorizontalOptions="@LayoutOptions.FillAndExpand"
+                                       HorizontalTextAlignment="@TextAlignment.Center"
+                                       FontSize="14"
+                                       FontFamily="ProximaNova"
+                                       Margin="new Thickness(0,-5,0,0)" />
+                            </StackLayout>
+                        </GridCell>
+                        <GridCell Row="0" Column="2">
+                            <CachedImage Source="@ImageSource.FromFile(AppResources.IconEllipsis)"
+                                   HorizontalOptions="@LayoutOptions.Center" />
+                        </GridCell>
+                    </Contents>
+                </Grid>
+                <ContentView IsVisible="@(Device.RuntimePlatform == Device.Android ? false : true)">
+                    <StackLayout Margin="new Thickness(0,0,0,0)"
+                                 Orientation="@StackOrientation.Horizontal">
+                        <Label Text="@Ticks.SecondsToTime()" TextColor="@AppResources.GreyColor"
+                               FontSize="10"
+                               FontFamily="ProximaNova"
+                               HorizontalOptions="@LayoutOptions.StartAndExpand" />
+                        <Label Text="@TicksLeft.SecondsToTime()" TextColor="@AppResources.GreyColor"
+                               FontSize="10"
+                               FontFamily="ProximaNova"
+                               HorizontalOptions="@LayoutOptions.End" />
+                        <AudioSlider HasThumb="true"
+                                     Value="@Ticks"
+                                     ValueChanged="@(async (newTicks) => await OnAudioSliderDragComplete(newTicks))"
+                                     Minimum="0" Maximum="@Song.LengthInSeconds"
+                                     Margin="new Thickness(-5,0,-5,0)"
+                                     HeightRequest="4" />
+                    </StackLayout>
+                </ContentView>
+                <StackLayout Margin="new Thickness(0,0,0,0)"
+                             Orientation="@StackOrientation.Horizontal"
+                             IsVisible="@(Device.RuntimePlatform == Device.Android ? true : false)">
+                    <Label Text="@Ticks.SecondsToTime()" TextColor="@AppResources.GreyColor"
+                           FontSize="10"
+                           FontFamily="ProximaNova"
+                           HorizontalOptions="@LayoutOptions.Start"
+                           Margin="new Thickness(0,0,5,0)" />
+                    <AudioSlider HasThumb="true"
+                                 Value="@Ticks"
+                                 ValueChanged="@(async (newTicks) => await OnAudioSliderDragComplete(newTicks))"
+                                 Minimum="0" Maximum="@Song.LengthInSeconds"
+                                 Margin="new Thickness(-5,0,-5,0)"
+                                 HeightRequest="4"
+                                 HorizontalOptions="@LayoutOptions.FillAndExpand"
+                                 VerticalOptions="@LayoutOptions.Center" />
+                    <Label Text="@TicksLeft.SecondsToTime()" TextColor="@AppResources.GreyColor"
+                           FontSize="10"
+                           FontFamily="ProximaNova"
+                           HorizontalOptions="@LayoutOptions.End"
+                           Margin="new Thickness(5,0,0,0)" />
+                </StackLayout>
+                <StackLayout Orientation="@StackOrientation.Horizontal"
+                             HorizontalOptions="@LayoutOptions.Center">
+                    <CachedImage Source="@ImageSource.FromFile("button_shuffle.png")"
+                           VerticalOptions="@LayoutOptions.Center"
+                           Margin="new Thickness(0,0,30,0)" />
+                    <CachedImage Source="@ImageSource.FromFile("button_back.png")"
+                           VerticalOptions="@LayoutOptions.Center" />
+                    <CachedImage Source="@ImageSource.FromFile(IsPlaying ? "button_play.png" : "button_play.png")"
+                                 VerticalOptions="@LayoutOptions.Center" />
+                    <CachedImage Source="@ImageSource.FromFile("button_forward.png")"
+                           VerticalOptions="@LayoutOptions.Center" />
+                    <CachedImage Source="@ImageSource.FromFile("button_repeat.png")"
+                           VerticalOptions="@LayoutOptions.Center"
+                           Margin="new Thickness(0,0,30,0)" />
+                </StackLayout>
+            </StackLayout>
+        </PancakeView>
+    </ScrollView>
+</ContentPage>
+
+@code {
+    private AME.CachedImage AlbumCachedImage;
+    private Color GradientStartColor = Color.Black;
+    private List<GradientStop> PancakeViewGradientStop;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        PancakeViewGradientStop = new List<GradientStop>()
+        {
+            new GradientStop()
+            {
+                Color = GradientStartColor,
+                Offset = 0
+            },
+            new GradientStop()
+            {
+                Color = AppResources.GradientEndColor,
+                Offset = 1
+            }
+        };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            GradientStartColor = await ImageProcessing.GetDominantColor(AlbumCachedImage.NativeControl);
+
+            //AlbumCachedImage.NativeControl.Success += async (s, e) =>
+            //{
+            //    GradientStartColor = await ImageProcessing.GetAverageColor(AlbumCachedImage.NativeControl);
+            //    StateHasChanged();
+            //};
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+}
