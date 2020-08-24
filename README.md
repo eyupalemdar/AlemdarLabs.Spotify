@@ -22,5 +22,10 @@ This is a great sample app which has a lot of MobileBlazorBindings + Xamarin int
 - Custom font and style
 - Integration with FFImageLoading library (both cached image and SVG support)
 
+
+# The end result
+On the left hand side we have the actual app, on the right hand side the Xamarin Forms version:
+
+
 # License
 This project is licensed under the terms of the [MIT license](https://github.com/eyupalemdar/AlemdarLabs.FormDesigner/blob/master/LICENSE).
