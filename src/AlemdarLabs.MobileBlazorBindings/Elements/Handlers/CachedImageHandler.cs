@@ -1,4 +1,5 @@
 ﻿using FFImageLoading.Transformations;
+using Microsoft.MobileBlazorBindings.Core;
 using Microsoft.MobileBlazorBindings.Elements;
 using Microsoft.MobileBlazorBindings.Elements.Handlers;
 

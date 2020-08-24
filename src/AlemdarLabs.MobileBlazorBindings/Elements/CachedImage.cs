@@ -15,5 +15,11 @@ namespace AlemdarLabs.MobileBlazorBindings.Elements
                 builder.AddAttribute(nameof(BlurredTransformation), BlurredTransformation.Value);
             }
         }
+
+#pragma warning disable CA1721 // Property names should not match get methods
+        [Parameter] public RenderFragment ChildContent { get; set; }
+#pragma warning restore CA1721 // Property names should not match get methods
+
+        protected override RenderFragment GetChildContent() => ChildContent;
     }
 }

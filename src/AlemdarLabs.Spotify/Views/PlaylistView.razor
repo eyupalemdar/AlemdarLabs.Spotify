@@ -1,34 +1,29 @@
-﻿<Grid>
-    <Layout>
-        <RowDefinition GridUnitType="GridUnitType.Auto" />
-    </Layout>
-    <Contents>
-        @for (int index = 0; index < Playlists.Count; index++)
-        {
-            var currentPlaylist = Playlists[index];
+﻿<Grid RowDefinitions="Auto">
+    @for (int index = 0; index < Playlists.Count; index++)
+    {
+        var currentPlaylist = Playlists[index];
 
-            <GridCell Row="0" Column="@index">
-                <StackLayout Margin="new Thickness(10,0,5,0)">
-                    <Image Source="@ImageSource.FromUri(new Uri(currentPlaylist.ImageUrl))"
-                           WidthRequest="136" HeightRequest="136"
-                           HorizontalOptions="LayoutOptions.Start" />
-                    <Label Text="@currentPlaylist.Name" TextColor="@Color.White"
-                           class="bold-label"
-                           FontFamily="ProximaNova-Bold"
-                           FontSize="13"
-                           HorizontalTextAlignment="TextAlignment.Start"
-                           LineBreakMode="LineBreakMode.TailTruncation" />
-                    <Label Text="@(string.Format("{0:N0} VOLGERS", currentPlaylist.NrOfFollowers))"
-                           TextColor="@AppResources.GreyColor"
-                           FontSize="12"
-                           FontFamily="ProximaNova"
-                           Margin="new Thickness(0,-5,0,0)"
-                           HorizontalTextAlignment="TextAlignment.Start"
-                           LineBreakMode="LineBreakMode.TailTruncation" />
-                </StackLayout>
-            </GridCell>
-        }
-    </Contents>
+        <GridCell Row="0" Column="@index">
+            <StackLayout Margin="new Thickness(10,0,5,0)">
+                <Image Source="@ImageSource.FromUri(new Uri(currentPlaylist.ImageUrl))"
+                       WidthRequest="136" HeightRequest="136"
+                       HorizontalOptions="LayoutOptions.Start" />
+                <Label Text="@currentPlaylist.Name" TextColor="@Color.White"
+                       class="bold-label"
+                       FontFamily="ProximaNova-Bold"
+                       FontSize="13"
+                       HorizontalTextAlignment="TextAlignment.Start"
+                       LineBreakMode="LineBreakMode.TailTruncation" />
+                <Label Text="@(string.Format("{0:N0} VOLGERS", currentPlaylist.NrOfFollowers))"
+                       TextColor="@AppResources.GreyColor"
+                       FontSize="12"
+                       FontFamily="ProximaNova"
+                       Margin="new Thickness(0,-5,0,0)"
+                       HorizontalTextAlignment="TextAlignment.Start"
+                       LineBreakMode="LineBreakMode.TailTruncation" />
+            </StackLayout>
+        </GridCell>
+    }
 </Grid>
 
 @code {

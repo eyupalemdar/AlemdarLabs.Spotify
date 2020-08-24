@@ -1,5 +1,6 @@
 ﻿using AlemdarLabs.Spotify.Models;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace AlemdarLabs.Spotify.Core
 {
@@ -33,12 +34,12 @@ namespace AlemdarLabs.Spotify.Core
         {
             return new List<Song>()
             {
-                    new Song(){ Artist="Muse", Title="Dig Down", LengthInSeconds=228, AlbumImageUrl="https://i.scdn.co/image/08d56eac0c7d48bb8bf7752b2202c3314db79394"},
-                    new Song(){ Artist="Gorillaz", Title="Clint Eastwood", LengthInSeconds=341, AlbumImageUrl="https://i.scdn.co/image/6c6086f6922b9a44920310b34ef98161bd7adf78"},
-                    new Song(){ Artist="Jamiroquai", Title="Virtual Insanity", LengthInSeconds=229, AlbumImageUrl="https://i.scdn.co/image/bb3810cd18de42b93c54536d7e9ab7f8c10a8229"},
-                    new Song(){ Artist="Biffy Clyro", Title="The Captain", LengthInSeconds=223, AlbumImageUrl="https://i.scdn.co/image/f8d0b0bdf4a541fb2d13cb63e958aa760e3547e5"},
-                    new Song(){ Artist="System of a Down", Title="Hypnotize", LengthInSeconds=189, AlbumImageUrl="https://i.scdn.co/image/66eb75e0f3a8a91822ba7154e4b41066e63e51f2"},
-                    new Song(){ Artist="Paramore", Title="Hard Times", LengthInSeconds=182, AlbumImageUrl="https://i.scdn.co/image/d8296568ae1b856050976111fa892d8db693efd5"}
+                    new Song(){ Artist="Muse", Title="Dig Down", LengthInSeconds=228, AlbumImageUrl="https://i.scdn.co/image/08d56eac0c7d48bb8bf7752b2202c3314db79394", DominantColorInPicture = Color.FromRgb(15, 10, 7)},
+                    new Song(){ Artist="Gorillaz", Title="Clint Eastwood", LengthInSeconds=341, AlbumImageUrl="https://i.scdn.co/image/6c6086f6922b9a44920310b34ef98161bd7adf78", DominantColorInPicture = Color.FromRgb(36, 45, 29)},
+                    new Song(){ Artist="Jamiroquai", Title="Virtual Insanity", LengthInSeconds=229, AlbumImageUrl="https://i.scdn.co/image/bb3810cd18de42b93c54536d7e9ab7f8c10a8229", DominantColorInPicture = Color.FromRgb(204, 184, 155)},
+                    new Song(){ Artist="Biffy Clyro", Title="The Captain", LengthInSeconds=223, AlbumImageUrl="https://i.scdn.co/image/f8d0b0bdf4a541fb2d13cb63e958aa760e3547e5", DominantColorInPicture = Color.FromRgb(201, 205, 210)},
+                    new Song(){ Artist="System of a Down", Title="Hypnotize", LengthInSeconds=189, AlbumImageUrl="https://i.scdn.co/image/66eb75e0f3a8a91822ba7154e4b41066e63e51f2", DominantColorInPicture = Color.FromRgb(167, 115, 105)},
+                    new Song(){ Artist="Paramore", Title="Hard Times", LengthInSeconds=182, AlbumImageUrl="https://i.scdn.co/image/d8296568ae1b856050976111fa892d8db693efd5", DominantColorInPicture = Color.FromRgb(205, 175, 196)}
             };
         }
     }

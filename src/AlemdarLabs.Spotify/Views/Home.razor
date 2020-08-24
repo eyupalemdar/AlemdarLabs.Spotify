@@ -1,74 +1,75 @@
-﻿<PancakeView BackgroundGradientStops="@PancakeViewGradientStop"
-             BackgroundGradientStartPoint="new Point(0d, 0d)"
-             BackgroundGradientEndPoint="new Point(0.3d, 0.25d)">
-    <StackLayout>
-        <ScrollView VerticalOptions="LayoutOptions.FillAndExpand"
-                    Orientation="ScrollOrientation.Vertical"
-                    Padding="@(Device.RuntimePlatform == Device.Android ? new Thickness(0,0,0,0) : new Thickness(0,85,0,0))"
-                    Margin="@(Device.RuntimePlatform == Device.Android ? new Thickness(0,0,0,0) : new Thickness(0,0,0,-60))">
-            <StackLayout VerticalOptions="LayoutOptions.StartAndExpand">
+﻿<CascadingValue Value="this" Name="HomePage">
+    <PancakeView BackgroundGradientStops="@PancakeViewGradientStop"
+                 BackgroundGradientStartPoint="new Point(0d, 0d)"
+                 BackgroundGradientEndPoint="new Point(0.3d, 0.25d)">
+        <StackLayout>
+            <ScrollView VerticalOptions="LayoutOptions.FillAndExpand"
+                        Orientation="ScrollOrientation.Vertical"
+                        Padding="@(Device.RuntimePlatform == Device.Android ? new Thickness(0,0,0,0) : new Thickness(0,85,0,0))"
+                        Margin="@(Device.RuntimePlatform == Device.Android ? new Thickness(0,0,0,0) : new Thickness(0,0,0,-60))">
                 <StackLayout VerticalOptions="LayoutOptions.StartAndExpand">
-                    <ContentView Margin="new Thickness(0,10,5,0)"
-                                 IsVisible="@(Device.RuntimePlatform == Device.Android ? true : false)">
-                        <SvgCachedImage Source="@ImageSource.FromFile(AppResources.IconSettings)"
-                                        HeightRequest="32" WidthRequest="32"
-                                        HorizontalOptions="@LayoutOptions.End"
-                                        VerticalOptions="@LayoutOptions.Center" />
-                    </ContentView>
-                    <Label Text="Yakınlarda Çalınanlar" TextColor="@Color.White"
-                           class="bold-label"
-                           HorizontalTextAlignment="@TextAlignment.Start"
-                           FontFamily="ProximaNova-Bold"
-                           FontSize="@AppResources.FontSizeLarge"
-                           Margin="new Thickness(10,0,5,10)" />
-                    <ScrollView Orientation="ScrollOrientation.Horizontal"
-                                HeightRequest="200">
-                        <StackLayout>
-                            <SongView Songs="Songs" />
-                        </StackLayout>
-                    </ScrollView>
+                    <StackLayout VerticalOptions="LayoutOptions.StartAndExpand">
+                        <ContentView Margin="new Thickness(0,10,5,0)"
+                                     IsVisible="@(Device.RuntimePlatform == Device.Android ? true : false)">
+                            <SvgCachedImage Source="@ImageSource.FromFile(AppResources.IconSettings)"
+                                            HeightRequest="32" WidthRequest="32"
+                                            HorizontalOptions="@LayoutOptions.End"
+                                            VerticalOptions="@LayoutOptions.Center" />
+                        </ContentView>
+                        <Label Text="Recently Played" TextColor="@Color.White"
+                               class="bold-label"
+                               HorizontalTextAlignment="@TextAlignment.Start"
+                               FontFamily="ProximaNova-Bold"
+                               FontSize="@AppResources.FontSizeLarge"
+                               Margin="new Thickness(10,0,5,10)" />
+                        <ScrollView Orientation="ScrollOrientation.Horizontal"
+                                    HeightRequest="200">
+                            <StackLayout>
+                                <SongView Songs="Songs" />
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="LayoutOptions.StartAndExpand"
+                                 Margin="new Thickness(0,20,0,0)">
+                        <Label Text="Jump Back In" TextColor="@Color.White"
+                               class="bold-label"
+                               HorizontalTextAlignment="@TextAlignment.Start"
+                               FontFamily="ProximaNova-Bold"
+                               FontSize="@AppResources.FontSizeLarge"
+                               Margin="new Thickness(10,0,5,10)" />
+                        <ScrollView Orientation="ScrollOrientation.Horizontal"
+                                    HeightRequest="200">
+                            <StackLayout>
+                                <AlbumView Albums="Albums" />
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="LayoutOptions.StartAndExpand"
+                                 Margin="new Thickness(0,20,0,0)">
+                        <Label Text="Made For You" TextColor="@Color.White"
+                               class="bold-label"
+                               HorizontalTextAlignment="@TextAlignment.Start"
+                               FontFamily="ProximaNova-Bold"
+                               FontSize="@AppResources.FontSizeLarge"
+                               Margin="new Thickness(10,0,5,10)" />
+                        <ScrollView Orientation="ScrollOrientation.Horizontal"
+                                    HeightRequest="200">
+                            <StackLayout>
+                                <PlaylistView Playlists="Playlists" />
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout VerticalOptions="LayoutOptions.StartAndExpand"
-                             Margin="new Thickness(0,20,0,0)">
-                    <Label Text="Jump Back In" TextColor="@Color.White"
-                           class="bold-label"
-                           HorizontalTextAlignment="@TextAlignment.Start"
-                           FontFamily="ProximaNova-Bold"
-                           FontSize="@AppResources.FontSizeLarge"
-                           Margin="new Thickness(10,0,5,10)" />
-                    <ScrollView Orientation="ScrollOrientation.Horizontal"
-                                HeightRequest="200">
-                        <StackLayout>
-                            <AlbumView Albums="Albums" />
-                        </StackLayout>
-                    </ScrollView>
-                </StackLayout>
-                <StackLayout VerticalOptions="LayoutOptions.StartAndExpand"
-                             Margin="new Thickness(0,20,0,0)">
-                    <Label Text="Recently Played" TextColor="@Color.White"
-                           class="bold-label"
-                           HorizontalTextAlignment="@TextAlignment.Start"
-                           FontFamily="ProximaNova-Bold"
-                           FontSize="@AppResources.FontSizeLarge"
-                           Margin="new Thickness(10,0,5,10)" />
-                    <ScrollView Orientation="ScrollOrientation.Horizontal"
-                                HeightRequest="200">
-                        <StackLayout>
-                            <PlaylistView Playlists="Playlists" />
-                        </StackLayout>
-                    </ScrollView>
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
-        <MiniPlayer Song="@CurrentPlayingTrack" />
-    </StackLayout>
-</PancakeView>
+            </ScrollView>
+            <MiniPlayer Song="@StateManager.CurrentPlayingSong" />
+        </StackLayout>
+    </PancakeView>
+</CascadingValue>
 
 @code {
     private List<Album> Albums;
     private List<Playlist> Playlists;
     private List<Song> Songs;
-    private Song CurrentPlayingTrack;
 
     private List<GradientStop> PancakeViewGradientStop;
 
@@ -80,7 +81,8 @@
         Playlists = DatasourceSeeder.GetPlaylists();
         Songs = DatasourceSeeder.GetSongs();
 
-        CurrentPlayingTrack = Songs.FirstOrDefault();
+        StateManager.CurrentPlayingSong = Songs.FirstOrDefault();
+        StateManager.StateHasChangedAsync = StateHasChangedAsync;
 
         PancakeViewGradientStop = new List<GradientStop>()
         {
@@ -95,5 +97,11 @@
                 Offset = 1
             }
         };
+    }
+
+    public async Task StateHasChangedAsync()
+    {
+        StateHasChanged();
+        await Task.CompletedTask;
     }
 }
