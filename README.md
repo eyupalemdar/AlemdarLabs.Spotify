@@ -14,9 +14,9 @@ This is a great sample app which has a lot of MobileBlazorBindings + Xamarin int
 
 - Code Sharing
 - Data integration/sync
-- Custom native Xamarin components
-- Custom MobileBlazorBindings wrappers for Xamarin components
-- Custom renderers for Android and IOS
+- Custom native [Xamarin components](https://github.com/eyupalemdar/AlemdarLabs.Spotify/tree/master/src/AlemdarLabs.Xamarin.Forms)
+- Custom [MobileBlazorBindings wrappers](https://github.com/eyupalemdar/AlemdarLabs.Spotify/tree/master/src/AlemdarLabs.MobileBlazorBindings) for Xamarin components
+- Custom renderers for [Android](https://github.com/eyupalemdar/AlemdarLabs.Spotify/tree/master/src/AlemdarLabs.Spotify.Android/Renderers) and IOS
 - Using [PancakeView](https://github.com/sthewissen/Xamarin.Forms.PancakeView)
 - Blazor way coding
 - Custom font and style
